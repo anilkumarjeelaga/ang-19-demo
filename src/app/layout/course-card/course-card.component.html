@@ -1,0 +1,109 @@
+  <!-- <div>{{coourse.name || 'No COusde Provide'}}</div> -->
+  <!-- <div>{{coourse.duration || 'No Duration Provided'}}</div> -->
+    <!-- <input type="text" > -->
+    <!-- @for( core of coreCourses; track core){ -->
+<div class="card" [ngClass]="cardClasses()">
+  @if(course.id == 1){
+    <h5>Course with id 1 is selected</h5>
+  }@else if(course.imgSrc){
+
+  <!-- } -->
+  <!-- @if(course.imgSrc){ -->
+
+    <img [src]="course.imgSrc" class="card-img-top" alt="...">
+  }@else{
+    <h4>No Image Availanble</h4>
+  }
+    <div class="card-body">
+      <h5 class="card-title">{{index}} {{course.courseName}}</h5>
+      <p class="card-text">{{course.description}}</p>
+      <a href="#" class="btn btn-primary">{{course.category}}</a>
+    </div>
+    <!-- @switch(course.dtls){
+      @case('Advanc'){
+        <span>Advanced Course</span>
+      }
+      @case('Begin'){
+        <span>Begin course</span>
+      }
+      @case('pro'){
+        <span>Pro course</span>
+      }
+      @default{
+        <span>unknown</span>
+      }
+    } -->
+
+    @switch(course.dtls){
+      @case('Begin'){
+        <span>Begin Course</span>
+      }
+      @case('Advan'){
+        <span>Advan</span>
+      }
+      <!-- @case('new'){
+        <span>pro course</span>
+      } -->
+      @default{
+        <span>unknown</span>
+      }
+    }
+
+
+    <ng-container [ngSwitch]="course.dtls">
+      <div *ngSwitchCase="'Begin'">Kust begin</div>
+      <div *ngSwitchDefault>All levels</div>
+    </ng-container>
+
+
+
+      <div><b>Curretn Date:</b> {{date}}</div>
+      <br>
+      <div><b>Current date with Pipe:</b> {{date | date}}</div>
+      <br>
+      <div><b>noraml Date:</b> {{dt | date: 'dd , EEEE, MMMM, YYYY'}}</div>
+    <div [ngSwitch]="course.dtls">
+      <div *ngSwitchCase="'Adance'">Avncedddd</div>
+      <div *ngSwitchCase = "'Begin'">Just Begin</div>
+      <div *ngSwitchCase="'unknown'">unknown</div>
+      <div *ngSwitchDefault>All Levels</div>
+    </div>
+
+
+    <b  >{{dataArr | uppercase}} test</b>
+
+
+    @for(dt of dataArr1; track dt){
+      @for(d of dt | keyvalue; track d;){
+
+        <div>key: {{d.key}} + ': ' + value: {{d.value}}</div>
+      }
+    }
+
+    <div>
+      <ng-container [ngSwitch]="course.dtls">
+        <ng-container *ngSwitchCase="'Advanc'">
+          <span>Just advance</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Begin'">
+          <span>Just Begin</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="'unknown'">
+          <span>just unknown</span>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <span>just default</span>
+        </ng-container>
+      </ng-container>
+    </div>
+
+
+
+    <button class="btn btn-primary" (click)="onViewCourse()">View Course</button>
+  </div>
+
+<!-- <p>{{core.id}}</p>
+<p>{{core.desc}}</p>
+<p>{{core.lessonCount}}</p>
+<P>{{core.category}}</P> -->
+<!-- } -->

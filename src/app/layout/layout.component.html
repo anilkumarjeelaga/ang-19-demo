@@ -1,0 +1,38 @@
+<!-- <p>layout works!</p> -->
+<!-- <app-header /> -->
+<div class="container">
+
+  <app-nav-menu />
+  <router-outlet />
+  <!-- <h2>{{coursesData.desc}}</h2> -->
+   <p>{{courses | json}}</p>
+   @for(pair of allcourses  | keyvalue; track pair){
+    <p>{{pair.key + ': ' + pair.value}}</p>
+   }
+  <div class="row">
+
+    @for(course of courses | slice:0:4;
+     track course.id; let index = $index; let count = $count; let first = $first; let last = $last; let even = $even; let odd = $odd){
+
+      <div class="col-lg-3"  [class.is-first]="$first" [class.is-last]="$last" [class.iseven] = "$even" [class.isodd]="$odd">
+        <!-- you can use $index directly -->
+        <app-course-card [index]="$count" (courseSelected)="eventHandlerEmitter($event)" [course] = "course"></app-course-card>
+      </div>
+      }@empty{
+      <p>No Courses Found</p>
+    }
+    <!-- <div class="col-lg-4">
+    <app-course-card (courseSelected)="eventHandlerEmitter($event)" [course] = "rxjsCourse"></app-course-card>
+
+  </div>
+  <div class="col-lg-4">
+
+    <app-course-card (courseSelected)="eventHandlerEmitter($event)" [course] = "ngrxCourse"></app-course-card>
+  </div> -->
+</div>
+<!-- <app-course-card [coourse]="mycourse"></app-course-card> -->
+<!-- <app-course-card [course] = "rxjsCourse"></app-course-card> -->
+
+<!-- <app-course-card [course] = "ngrxCourse"></app-course-card> -->
+<app-footer />
+</div>
